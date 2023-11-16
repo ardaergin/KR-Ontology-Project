@@ -85,10 +85,26 @@
     
 
 
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Beef -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Beef">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Meat"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#BellPepper -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#BellPepper">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeTopping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#BrownRice -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#BrownRice">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Rice"/>
     </owl:Class>
     
 
@@ -117,6 +133,22 @@
     
 
 
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#ChineseNoodles -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#ChineseNoodles">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Noodles"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Cilantro -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Cilantro">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeGarnish"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Corn -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Corn">
@@ -133,9 +165,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Ebi_Fry -->
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#EbiFry -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Ebi_Fry">
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#EbiFry">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
     </owl:Class>
     
@@ -145,6 +177,41 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Edamame">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeTopping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#EelSauce -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#EelSauce">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeSauce"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#EggNoodles -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#EggNoodles">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Noodles"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#FishSoup -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#FishSoup">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Soup"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#hasProtein"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Soup"/>
     </owl:Class>
     
 
@@ -176,6 +243,12 @@
     
 
 
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Food -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Food"/>
+    
+
+
     <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#FriedOnions -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#FriedOnions">
@@ -184,10 +257,107 @@
     
 
 
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Gazpacho -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Gazpacho">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Soup"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Gunkan -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Gunkan">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Sushi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#GunkanEel -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#GunkanEel">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Gunkan"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#hasProtein"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Gunkan"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#GunkanSalmon -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#GunkanSalmon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Gunkan"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#hasProtein"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Gunkan"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#GunkanTuna -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#GunkanTuna">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Gunkan"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#hasProtein"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Gunkan"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#HoneySoySauce -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#HoneySoySauce">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeSauce"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Icecream -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Icecream">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Food"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#IcecreamBlackSesame -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#IcecreamBlackSesame">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Icecream"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#IcecreamGreenTea -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#IcecreamGreenTea">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Icecream"/>
     </owl:Class>
     
 
@@ -204,6 +374,22 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#JapaneseMayo">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Mayo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#LemonSlices -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#LemonSlices">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeGarnish"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#MakiRolls -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#MakiRolls">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Sushi"/>
     </owl:Class>
     
 
@@ -267,6 +453,98 @@
     
 
 
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#MisoSoup -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#MisoSoup">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Soup"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Nigiri -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Nigiri">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Sushi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#NigiriEel -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#NigiriEel">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Nigiri"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#hasProtein"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Nigiri"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#NigiriSalmon -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#NigiriSalmon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Nigiri"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#hasProtein"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Nigiri"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#NigiriShrimp -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#NigiriShrimp">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Nigiri"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#hasProtein"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Nigiri"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#NigiriTuna -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#NigiriTuna">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Nigiri"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#hasProtein"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Nigiri"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#NonSpicyPoke -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#NonSpicyPoke">
@@ -302,10 +580,42 @@
     
 
 
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Noodles -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Noodles">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeBase"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#NoriFlakes -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#NoriFlakes">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeTopping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Octopus -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Octopus">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PandanRice -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PandanRice">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Rice"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Parsley -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Parsley">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeGarnish"/>
     </owl:Class>
     
 
@@ -318,27 +628,59 @@
     
 
 
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeBase -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeBase">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Food"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeBowl -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeBowl"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeBowl">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Food"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeGarnish -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeGarnish">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Food"/>
+    </owl:Class>
     
 
 
     <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeProtein -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeProtein"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeProtein">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeBowl"/>
+    </owl:Class>
     
 
 
     <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeSauce -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeSauce"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeSauce">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Food"/>
+    </owl:Class>
     
 
 
     <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeTopping -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeTopping"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeTopping">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Food"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Quinoa -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Quinoa">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeBase"/>
+    </owl:Class>
     
 
 
@@ -358,6 +700,30 @@
     
 
 
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Rice -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Rice">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeBase"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#RiceCrackers -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#RiceCrackers">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SideDish"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#RiceNoodles -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#RiceNoodles">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Noodles"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Salmon -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Salmon">
@@ -366,10 +732,83 @@
     
 
 
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SalmonRoll -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SalmonRoll">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Uramaki"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#hasProtein"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Uramaki"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Sashimi -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Sashimi">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Sushi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SashimiSalmon -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SashimiSalmon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Sashimi"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#hasProtein"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Sashimi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SashimiTuna -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SashimiTuna">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Sashimi"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#hasProtein"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Sashimi"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeProtein"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SeaweedSnack -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SeaweedSnack">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SideDish"/>
     </owl:Class>
     
 
@@ -390,10 +829,34 @@
     
 
 
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#ShishoLeaves -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#ShishoLeaves">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeGarnish"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Shrimp -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Shrimp">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SideDish -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SideDish">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Food"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Soup -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Soup">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SideDish"/>
     </owl:Class>
     
 
@@ -433,6 +896,44 @@
     
 
 
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SpicySalmonHandroll -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SpicySalmonHandroll">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Temaki"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#hasProtein"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Temaki"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SpicySalmonRoll -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SpicySalmonRoll">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#MakiRolls"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#hasProtein"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#MakiRolls"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SpicySauce -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SpicySauce">
@@ -445,6 +946,44 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SpicyTopping">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeTopping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SpicyTunaHandroll -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SpicyTunaHandroll">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Temaki"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#hasProtein"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Temaki"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SpicyTunaRoll -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SpicyTunaRoll">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#MakiRolls"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#hasProtein"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#MakiRolls"/>
     </owl:Class>
     
 
@@ -474,10 +1013,26 @@
     
 
 
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Sushi -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Sushi">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SideDish"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SweetPotato -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#SweetPotato">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#PokeTopping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Temaki -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Temaki">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Sushi"/>
     </owl:Class>
     
 
@@ -506,6 +1061,25 @@
     
 
 
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#TomYumSoup -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#TomYumSoup">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Soup"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#hasProtein"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Soup"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Tomato -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Tomato">
@@ -518,6 +1092,41 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Tuna">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#TunaRoll -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#TunaRoll">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Uramaki"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#hasProtein"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Seafood"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Uramaki"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#UdonNoodles -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#UdonNoodles">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Noodles"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Uramaki -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Uramaki">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Sushi"/>
     </owl:Class>
     
 
@@ -594,6 +1203,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#WhiteRice -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#WhiteRice">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Rice"/>
+    </owl:Class>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -630,7 +1247,7 @@
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Ebi_Fry"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#EbiFry"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Salmon"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Shrimp"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/paula/ontologies/2023/10/untitled-ontology-4#Surimi"/>
