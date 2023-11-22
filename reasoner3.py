@@ -1,16 +1,6 @@
 from py4j.java_gateway import JavaGateway
-import re
-
-# class Completion:
-#     def __init__(self, tbox, axioms, allConcepts, conceptNames, elFactory):
-#         self.tbox = tbox
-#         self.axioms = axioms
-#         self.allConcepts = allConcepts
-#         self.conceptNames = conceptNames
-#         self.elFactory = elFactory
-#         self.Subsumers = {}
-#         self.Nodes = {}
-#         self.current_node = 0
+import sys
+import os
 
 def find_key(dictionary, target_value):
     for key, value in dictionary.items():
@@ -173,7 +163,6 @@ def completion_alg(left, right, current_node, child, parent):
         if not right.getClass().getSimpleName() == "ExistentialRoleRestriction" and not '∀' in parent:
             conjunction_rule_right(current_node, child, parent)
 
-
     # Existential rule
     if left.getClass().getSimpleName() == "ExistentialRoleRestriction":
         # print(f'test: {formatter.format(left)}')
@@ -218,23 +207,37 @@ def complete_subsumers(subsumers):
         # Remove duplicates by converting to a set and back to a list
         SubsumersComplete[key] = list(set(SubsumersComplete[key]))
 
+    # Append key and 'TOP' to all list items
+    for key in SubsumersComplete.keys():
+        SubsumersComplete[key].append(key)
+        SubsumersComplete[key].append('TOP')
+
     # Update the original dictionary
     subsumers = SubsumersComplete
 
     return(subsumers)
 
 if __name__ == "__main__":
+    if len(sys.argv) < 3:
+        print("Usage: python reasoner.py ONTOLOGY_FILE CLASS_NAME")
+        sys.exit(1)
+
+    ontology_file = sys.argv[1]
+    class_name = sys.argv[2]
+
+    if os.path.exists(ontology_file) == False:
+        print("ERROR: ONTOLOGY_FILE cannot be found.")
+        sys.exit(1)
 
     gateway = JavaGateway() # connect to the java gateway of dl4python
     parser = gateway.getOWLParser() # get a parser from OWL files to DL ontologies
     formatter = gateway.getSimpleDLFormatter() # get a formatter to print in nice DL format
 
-    print("Loading the ontology...")
-    ontology = parser.parseFile("KR1_POKE.rdf")     # load an ontology from a file
-    print("Loaded the ontology!")
+    # print("Loading the ontology...")
+    ontology = parser.parseFile(ontology_file)     # load an ontology from a file
+    # print("Loaded the ontology!")
 
     # IMPORTANT: the algorithm from the lecture assumes conjunctions to always be over two concepts
-    print("Converting to binary conjunctions")
     gateway.convertToBinaryConjunctions(ontology)
 
     tbox = ontology.tbox()
@@ -312,20 +315,25 @@ if __name__ == "__main__":
 
     # print(Nodes)
     # print(Subsumers)
-    print(Subsumers['RiceNoodles'])
-
-    print('Subsumers our reasoner: ')
-    print(Subsumers['RiceNoodles'])
 
     # Comparison against the hermit reasoner
     hermit = gateway.getHermiTReasoner() # might the upper case T!
-    spicytunabowl= elFactory.getConceptName('RiceNoodles')
+    class_ = elFactory.getConceptName(class_name)
     hermit.setOntology(ontology)
     print("Subsumers according to hermit: ")
-    subsumers = hermit.getSubsumers(spicytunabowl)
+    subsumers = hermit.getSubsumers(class_)
     print(subsumers.toString())
     for concept in subsumers:
         print(" - ",formatter.format(concept))
+    print()
+
+    # THIS IS THE CORRECT OUTPUT! ALL OTHER PRINTS SHOULD BE DELETED
+    if class_name not in Subsumers:
+        print('ERROR: The given classname is not found to be a class in the current ontology.')
+        sys.exit(1)
+    else:
+        for concept in Subsumers[class_name]:
+            print(concept)
 
 
 
