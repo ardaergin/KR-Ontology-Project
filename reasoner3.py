@@ -1,5 +1,6 @@
 from py4j.java_gateway import JavaGateway
-import re
+import sys
+import os
 
 # class Completion:
 #     def __init__(self, tbox, axioms, allConcepts, conceptNames, elFactory):
@@ -101,12 +102,18 @@ def conjunction_rule_right(current_node, child, parent):
 
             if conjunct.getClass().getSimpleName() == "MaxNumberRestriction":
                 pass # TODO: Do we have to do something with this?
+            if conjunct.getClass().getSimpleName() == "ExistentialRoleRestriction" and not conjunct.getClass().getSimpleName() == "ConceptConjunction":
+                existential_rule_right(formatter.format(conjunct), left, current_node)
+           # elif conjunct.filler().getClass().getSimpleName() == "ConceptConjunction":
+                #conjunction_rule_right(current_node, child, formatter.format(conjunct.filler()))
+
 
         if child in Subsumers:
             if formatter.format(conjunct) not in Subsumers[child]:
                 Subsumers[child].append(formatter.format(conjunct))
         else:
             Subsumers[child] = [formatter.format(conjunct)]
+        
 
 """
 """
@@ -172,6 +179,8 @@ def completion_alg(left, right, current_node, child, parent):
         # print(f'test: {formatter.format(left)}')
         element = formatter.format(left.role()),'.',formatter.format(left.filler())
         existential_rule_left(element, left, current_node) # Call function existential rule
+        if left.filler().getClass().getSimpleName() == "ConceptConjunction":
+            conjunction_rule_left(current_node,child,parent)
 
     # TODO: Add other existential rule
 
@@ -181,6 +190,9 @@ def completion_alg(left, right, current_node, child, parent):
         # If there is already a Node that has same role, check if the connected filler is
         # saved in a key that already contains the filler from current element in questions hahaha
         existential_rule_right(element, right, current_node)
+        if right.filler().getClass().getSimpleName() == "ConceptConjunction":
+            conjunction_rule_right(current_node,child,parent)
+       
 
 def equivalence_axiom(axiom, Nodes, current_node):
     pass # TODO: I want to move the equivalence code in the main loop here, but doesn't work yet somehow
@@ -206,23 +218,37 @@ def complete_subsumers(subsumers):
         # Remove duplicates by converting to a set and back to a list
         SubsumersComplete[key] = list(set(SubsumersComplete[key]))
 
+    # Append key and 'TOP' to all list items
+    for key in SubsumersComplete.keys():
+        SubsumersComplete[key].append(key)
+        SubsumersComplete[key].append('TOP')
+
     # Update the original dictionary
     subsumers = SubsumersComplete
 
     return(subsumers)
 
 if __name__ == "__main__":
+    if len(sys.argv) < 3:
+        print("Usage: python reasoner.py ONTOLOGY_FILE CLASS_NAME")
+        sys.exit(1)
+
+    ontology_file = sys.argv[1]
+    class_name = sys.argv[2]
+
+    if os.path.exists(ontology_file) == False:
+        print("ERROR: ONTOLOGY_FILE cannot be found.")
+        sys.exit(1)
 
     gateway = JavaGateway() # connect to the java gateway of dl4python
     parser = gateway.getOWLParser() # get a parser from OWL files to DL ontologies
     formatter = gateway.getSimpleDLFormatter() # get a formatter to print in nice DL format
 
-    print("Loading the ontology...")
-    ontology = parser.parseFile("KR1_POKE.rdf")     # load an ontology from a file
-    print("Loaded the ontology!")
+    # print("Loading the ontology...")
+    ontology = parser.parseFile(ontology_file)     # load an ontology from a file
+    # print("Loaded the ontology!")
 
     # IMPORTANT: the algorithm from the lecture assumes conjunctions to always be over two concepts
-    print("Converting to binary conjunctions")
     gateway.convertToBinaryConjunctions(ontology)
 
     tbox = ontology.tbox()
@@ -300,20 +326,25 @@ if __name__ == "__main__":
 
     # print(Nodes)
     # print(Subsumers)
-    print(Subsumers['SpicyTopping'])
-
-    print('Subsumers our reasoner: ')
-    print(Subsumers['SpicyTunaBowl'])
 
     # Comparison against the hermit reasoner
     hermit = gateway.getHermiTReasoner() # might the upper case T!
-    spicytunabowl= elFactory.getConceptName('SpicyTunaBowl')
+    class_ = elFactory.getConceptName(class_name)
     hermit.setOntology(ontology)
     print("Subsumers according to hermit: ")
-    subsumers = hermit.getSubsumers(spicytunabowl)
+    subsumers = hermit.getSubsumers(class_)
     print(subsumers.toString())
     for concept in subsumers:
         print(" - ",formatter.format(concept))
+    print()
+
+    # THIS IS THE CORRECT OUTPUT! ALL OTHER PRINTS SHOULD BE DELETED
+    if class_name not in Subsumers:
+        print('ERROR: The given classname is not found to be a class in the current ontology.')
+        sys.exit(1)
+    else:
+        for concept in Subsumers[class_name]:
+            print(concept)
 
 
 
