@@ -315,11 +315,11 @@ if __name__ == "__main__":
     print(Subsumers['SpicyTopping'])
 
     print('Subsumers our reasoner: ')
-    print(Subsumers['SpicyTunaBowl'])
+    print(Subsumers['MeatyPoke'], '________LOOK HERE________')
 
     # Comparison against the hermit reasoner
     hermit = gateway.getHermiTReasoner() # might the upper case T!
-    spicytunabowl= elFactory.getConceptName('SpicyTunaBowl')
+    spicytunabowl= elFactory.getConceptName('MeatyPoke')
     hermit.setOntology(ontology)
     print("Subsumers according to hermit: ")
     subsumers = hermit.getSubsumers(spicytunabowl)

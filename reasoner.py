@@ -161,8 +161,3 @@ for axiom in axioms:
 
 print(Nodes)
  
-        
-                
-
-
-
