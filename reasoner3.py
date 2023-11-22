@@ -315,7 +315,7 @@ if __name__ == "__main__":
     print(Subsumers['SpicyTopping'])
 
     print('Subsumers our reasoner: ')
-    print(Subsumers['MeatyPoke'], '________LOOK HERE________')
+    print(Subsumers['MeatyPoke'])
 
     # Comparison against the hermit reasoner
     hermit = gateway.getHermiTReasoner() # might the upper case T!
