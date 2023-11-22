@@ -2,17 +2,6 @@ from py4j.java_gateway import JavaGateway
 import sys
 import os
 
-# class Completion:
-#     def __init__(self, tbox, axioms, allConcepts, conceptNames, elFactory):
-#         self.tbox = tbox
-#         self.axioms = axioms
-#         self.allConcepts = allConcepts
-#         self.conceptNames = conceptNames
-#         self.elFactory = elFactory
-#         self.Subsumers = {}
-#         self.Nodes = {}
-#         self.current_node = 0
-
 def find_key(dictionary, target_value):
     for key, value in dictionary.items():
         if value == target_value:
