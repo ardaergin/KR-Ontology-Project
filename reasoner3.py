@@ -1,16 +1,10 @@
 from py4j.java_gateway import JavaGateway
-import re
+import sys
+import os
+import time
+from memory_profiler import profile
 
-# class Completion:
-#     def __init__(self, tbox, axioms, allConcepts, conceptNames, elFactory):
-#         self.tbox = tbox
-#         self.axioms = axioms
-#         self.allConcepts = allConcepts
-#         self.conceptNames = conceptNames
-#         self.elFactory = elFactory
-#         self.Subsumers = {}
-#         self.Nodes = {}
-#         self.current_node = 0
+
 
 def find_key(dictionary, target_value):
     for key, value in dictionary.items():
@@ -54,7 +48,7 @@ def entailment_rule(current_node, child, parent):
 """
 - Example: HoneySoySauce <= VegetarianSauce
 """
-def conjunction_rule_left(current_node, child, parent):
+"""def conjunction_rule_left(current_node, child, parent):
     if current_node not in Nodes:
         Nodes[current_node] = []
     if child not in Nodes[current_node]:
@@ -74,17 +68,17 @@ def conjunction_rule_left(current_node, child, parent):
 
             if conjunct.getClass().getSimpleName() == "MaxNumberRestriction":
                 pass # TODO: Do we have to do something with this?
-
+"""
 """
  Example: TeriyakiSauce <= (VegetarianSauce n VeganSauce)
 """
-def conjunction_rule_right(current_node, child, parent):
+def conjunction_rule(current_node, element, side):
     if current_node not in Nodes:
         Nodes[current_node] = []
-    if parent not in Nodes[current_node]:
-        Nodes[current_node].append(parent)
+    if element not in Nodes[current_node]:
+        Nodes[current_node].append(element)
 
-    for conjunct in right.getConjuncts():
+    for conjunct in side.getConjuncts():
         # print(f'conjuncts: {formatter.format(conjunct)} {conjunct.getClass().getSimpleName()}')
 
         if formatter.format(conjunct) not in Nodes[current_node]:
@@ -102,7 +96,7 @@ def conjunction_rule_right(current_node, child, parent):
             if conjunct.getClass().getSimpleName() == "MaxNumberRestriction":
                 pass # TODO: Do we have to do something with this?
             if conjunct.getClass().getSimpleName() == "ExistentialRoleRestriction" and not conjunct.getClass().getSimpleName() == "ConceptConjunction":
-                existential_rule_right(formatter.format(conjunct), left, current_node)
+                existential_rule(formatter.format(conjunct), conjunct.role(), conjunct.filler(), current_node)
            # elif conjunct.filler().getClass().getSimpleName() == "ConceptConjunction":
                 #conjunction_rule_right(current_node, child, formatter.format(conjunct.filler()))
 
@@ -116,7 +110,7 @@ def conjunction_rule_right(current_node, child, parent):
 
 """
 """
-def existential_rule_left(element, left, current_node):
+"""def existential_rule_left(element, left, current_node):
     if element not in Nodes[current_node]:
         Nodes[current_node].append(element)
         if formatter.format(left.filler()) not in Nodes[any]:
@@ -124,15 +118,15 @@ def existential_rule_left(element, left, current_node):
         if formatter.format(left.filler()) not in Subsumers:
             Subsumers[formatter.format(left.filler())] = []
         ##  other existential rule missing
-
+"""
 """
 Example: ChickenBowl <= EhasBase.PokeBase
 """
-def existential_rule_right(element, right, current_node):
+def existential_rule(element,Role,Filler, current_node):
     # Role relation
-    target_substring = (formatter.format(right.role()) + ".")
+    target_substring = (formatter.format(Role) + ".")
     # Concept name connected to role relation
-    filler = formatter.format(right.filler())
+    filler = formatter.format(Filler)
     result = check_values(Nodes, target_substring, filler)
 
     if result:
@@ -166,21 +160,22 @@ def completion_alg(left, right, current_node, child, parent):
     # Conjunction rules for left and right
     if left.getClass().getSimpleName() == "ConceptConjunction":
         if not left.getClass().getSimpleName() == "ExistentialRoleRestriction" and not '∀' in child:
-            conjunction_rule_left(current_node, child, parent) # call conjunction function for left
+
+            conjunction_rule(current_node, child, left) # call conjunction function for left
 
     # Example: TeriyakiSauce <= (VegetarianSauce n VeganSauce)
     if right.getClass().getSimpleName() == "ConceptConjunction":
         if not right.getClass().getSimpleName() == "ExistentialRoleRestriction" and not '∀' in parent:
-            conjunction_rule_right(current_node, child, parent)
-
+            conjunction_rule(current_node, parent, right)
 
     # Existential rule
     if left.getClass().getSimpleName() == "ExistentialRoleRestriction":
         # print(f'test: {formatter.format(left)}')
         element = formatter.format(left.role()),'.',formatter.format(left.filler())
-        existential_rule_left(element, left, current_node) # Call function existential rule
+        print(element)
+        existential_rule(element, left.role(),left.filler(), current_node) # Call function existential rule
         if left.filler().getClass().getSimpleName() == "ConceptConjunction":
-            conjunction_rule_left(current_node,child,parent)
+            conjunction_rule(current_node,formatter.format(left.filler()),left.filler())
 
     # TODO: Add other existential rule
 
@@ -189,9 +184,9 @@ def completion_alg(left, right, current_node, child, parent):
         element = formatter.format(right.role()),'.',formatter.format(right.filler())
         # If there is already a Node that has same role, check if the connected filler is
         # saved in a key that already contains the filler from current element in questions hahaha
-        existential_rule_right(element, right, current_node)
+        existential_rule(element, right.role(),right.filler(), current_node)
         if right.filler().getClass().getSimpleName() == "ConceptConjunction":
-            conjunction_rule_right(current_node,child,parent)
+            conjunction_rule(current_node,formatter.format(right.filler()),right.filler())
        
 
 def equivalence_axiom(axiom, Nodes, current_node):
@@ -218,23 +213,40 @@ def complete_subsumers(subsumers):
         # Remove duplicates by converting to a set and back to a list
         SubsumersComplete[key] = list(set(SubsumersComplete[key]))
 
+    # Append key and 'TOP' to all list items
+    for key in SubsumersComplete.keys():
+        SubsumersComplete[key].append(key)
+        SubsumersComplete[key].append('TOP')
+
     # Update the original dictionary
     subsumers = SubsumersComplete
 
     return(subsumers)
 
 if __name__ == "__main__":
+    if len(sys.argv) < 3:
+        print("Usage: python reasoner.py ONTOLOGY_FILE CLASS_NAME")
+        sys.exit(1)
+
+    ontology_file = sys.argv[1]
+    class_name = sys.argv[2]
+
+   
+   # @profile
+
+    if os.path.exists(ontology_file) == False:
+        print("ERROR: ONTOLOGY_FILE cannot be found.")
+        sys.exit(1)
 
     gateway = JavaGateway() # connect to the java gateway of dl4python
     parser = gateway.getOWLParser() # get a parser from OWL files to DL ontologies
     formatter = gateway.getSimpleDLFormatter() # get a formatter to print in nice DL format
 
-    print("Loading the ontology...")
-    ontology = parser.parseFile("KR1_POKE.rdf")     # load an ontology from a file
-    print("Loaded the ontology!")
+    # print("Loading the ontology...")
+    ontology = parser.parseFile(ontology_file)     # load an ontology from a file
+    # print("Loaded the ontology!")
 
     # IMPORTANT: the algorithm from the lecture assumes conjunctions to always be over two concepts
-    print("Converting to binary conjunctions")
     gateway.convertToBinaryConjunctions(ontology)
 
     tbox = ontology.tbox()
@@ -247,7 +259,8 @@ if __name__ == "__main__":
     Nodes = {}
 
     current_node = 0
-
+     # Start the timer
+    start_time = time.time()
     for axiom in axioms:
         axiomType = axiom.getClass().getSimpleName()
 
@@ -307,25 +320,62 @@ if __name__ == "__main__":
             pass # TODO:
 
     Subsumers = complete_subsumers(Subsumers)
+    end_time = time.time()
+    # Calculate elapsed time
+    elapsed_time = end_time - start_time
 
+    
     # print(Subsumers)
 
     # print(Nodes)
     # print(Subsumers)
-    print(Subsumers['SpicyTopping'])
-
-    print('Subsumers our reasoner: ')
-    print(Subsumers['SpicyTunaBowl'])
 
     # Comparison against the hermit reasoner
+    start_time1 = time.time()
     hermit = gateway.getHermiTReasoner() # might the upper case T!
-    spicytunabowl= elFactory.getConceptName('SpicyTunaBowl')
+    class_ = elFactory.getConceptName(class_name)
     hermit.setOntology(ontology)
+    
+    subsumers = hermit.getSubsumers(class_)
+    end_time1 = time.time()
+    # Calculate elapsed time
+    elapsed_time1 = end_time1 - start_time1
+
+    print("Hermit finds", len(subsumers), "Subsumers for ", class_)
+    print(f"Reasoning time for Hermit: {elapsed_time1} seconds")
+
     print("Subsumers according to hermit: ")
-    subsumers = hermit.getSubsumers(spicytunabowl)
     print(subsumers.toString())
     for concept in subsumers:
         print(" - ",formatter.format(concept))
+    print()
 
+    start_time2 = time.time()
+    elk = gateway.getELKReasoner() # might the upper case T!
+    class_ = elFactory.getConceptName(class_name)
+    elk.setOntology(ontology)
+    
+    subsumers = elk.getSubsumers(class_)
+    end_time2 = time.time()
+    # Calculate elapsed time
+    elapsed_time2 = end_time2 - start_time2
 
+    print("ELK finds", len(subsumers), "Subsumers for ", class_)
+    print(f"Reasoning time for ELK: {elapsed_time1} seconds")
+
+    print("Subsumers according to hermit: ")
+    print(subsumers.toString())
+    for concept in subsumers:
+        print(" - ",formatter.format(concept))
+    print()
+
+    # THIS IS THE CORRECT OUTPUT! ALL OTHER PRINTS SHOULD BE DELETED
+    if class_name not in Subsumers:
+        print('ERROR: The given classname is not found to be a class in the current ontology.')
+        sys.exit(1)
+    else:
+        print("Our reasoner finds", len(Subsumers[class_name]), "Subsumers for ", class_name)
+        print(f"Reasoning time for our Reasoner: {elapsed_time} seconds")
+        for concept in Subsumers[class_name]:
+            print(concept)
 
