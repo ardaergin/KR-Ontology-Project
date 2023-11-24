@@ -1,6 +1,8 @@
 from py4j.java_gateway import JavaGateway
 import sys
 import os
+gateway = JavaGateway()  # connect to the java gateway of dl4python
+
 
 def find_key(dictionary, target_value):
     for key, value in dictionary.items():
@@ -91,8 +93,8 @@ def conjunction_rule_right(current_node, child, parent):
 
             if conjunct.getClass().getSimpleName() == "MaxNumberRestriction":
                 pass # TODO: Do we have to do something with this?
-            if conjunct.getClass().getSimpleName() == "ExistentialRoleRestriction" and not conjunct.getClass().getSimpleName() == "ConceptConjunction":
-                existential_rule_right(formatter.format(conjunct), left, current_node)
+            # if conjunct.getClass().getSimpleName() == "ExistentialRoleRestriction" and not conjunct.getClass().getSimpleName() == "ConceptConjunction":
+            #     existential_rule_right(formatter.format(conjunct), left, current_node)
            # elif conjunct.filler().getClass().getSimpleName() == "ConceptConjunction":
                 #conjunction_rule_right(current_node, child, formatter.format(conjunct.filler()))
 
@@ -200,7 +202,12 @@ def complete_subsumers(subsumers):
                 # If the value is also a key, extend its list to the current key's list
                 additional_values = subsumers[value]
                 if isinstance(additional_values, list):
-                    SubsumersComplete[key].extend(additional_values)
+                    for item in additional_values:
+                        if item not in SubsumersComplete[key]:
+                            SubsumersComplete[key].append(item)
+                    # SubsumersComplete[key].extend(additional_values)
+                    # print(f'help 1 {SubsumersComplete[key]}')
+
                 else:
                     SubsumersComplete[key].append(additional_values)
 
@@ -217,19 +224,53 @@ def complete_subsumers(subsumers):
 
     return(subsumers)
 
+# def complete_subsumers(subsumers):
+#     # Create a copy to modify
+#     SubsumersComplete = subsumers.copy()
+#
+#     for key, value_list in subsumers.items():
+#         # Ensure the current value is a list
+#         if not isinstance(value_list, list):
+#             value_list = [value_list]
+#
+#         for value in value_list:
+#             if value in subsumers:
+#                 # If the value is also a key, extend its list to the current key's list
+#                 additional_values = subsumers[value]
+#                 if isinstance(additional_values, list):
+#                     SubsumersComplete[key].extend(additional_values)
+#                 else:
+#                     SubsumersComplete[key].append(additional_values)
+#
+#         # Remove duplicates by converting to a set and back to a list
+#         SubsumersComplete[key] = list(set(SubsumersComplete[key]))
+#
+#     # Append key and 'TOP' to all list items
+#     for key in SubsumersComplete.keys():
+#         SubsumersComplete[key].append(key)
+#         SubsumersComplete[key].append('TOP')
+#
+#     # Update the original dictionary
+#     subsumers = SubsumersComplete
+#
+#     return(subsumers)
+
+
 if __name__ == "__main__":
     if len(sys.argv) < 3:
         print("Usage: python reasoner.py ONTOLOGY_FILE CLASS_NAME")
         sys.exit(1)
 
+    print(sys.argv)
     ontology_file = sys.argv[1]
     class_name = sys.argv[2]
+    # print(class_name)
 
     if os.path.exists(ontology_file) == False:
         print("ERROR: ONTOLOGY_FILE cannot be found.")
         sys.exit(1)
 
-    gateway = JavaGateway() # connect to the java gateway of dl4python
+    # gateway = JavaGateway() # connect to the java gateway of dl4python
     parser = gateway.getOWLParser() # get a parser from OWL files to DL ontologies
     formatter = gateway.getSimpleDLFormatter() # get a formatter to print in nice DL format
 
@@ -329,9 +370,12 @@ if __name__ == "__main__":
 
     # THIS IS THE CORRECT OUTPUT! ALL OTHER PRINTS SHOULD BE DELETED
     if class_name not in Subsumers:
-        print('ERROR: The given classname is not found to be a class in the current ontology.')
+        print(f'ERROR: The given classname: {class_name} is not found to be a class in the current ontology.')
+        print('If your class contains parenthesis around it like "Marghertia" in pizza.owl, then add extra parentheses around the class name when you '
+              'give it as a command line argument.')
         sys.exit(1)
     else:
+        print('Our reasoner: ')
         for concept in Subsumers[class_name]:
             print(concept)
 
